@@ -11,8 +11,6 @@ import random
 import discord
 from discord.ext import commands
 
-# -- // Variables \\ --
-
 client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
 
 # -- // Events \\ --
@@ -21,8 +19,11 @@ client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
 
 @client.event
 async def on_ready():
-    print("Bot is ready")
+    await client.change_presence(status = discord.Status.online, activity = discord.Game("Active"))
     
+async def on_error():
+    await client.change_presence(status = discord.Status.do_not_disturb, activity = discord.Game("Error"))
+
 @client.event
 async def on_member_join(member):
     print(str(member) + " has joined the server")
@@ -64,6 +65,7 @@ async def _8ball(ctx, *, question):
     await ctx.send("**Question:** " + question + "\n**Answer:** " + random.choice(responses))
 
 @client.command()
+@commands.has_permissions(manage_messages = True)
 async def clear(ctx, amount = 1):
 
     if amount == "all":
@@ -77,6 +79,32 @@ async def clear(ctx, amount = 1):
         message = await ctx.send(str(amount) + " messages will be deleted")   
 
     await message.delete(delay = 3)
+
+@client.command()
+@commands.has_permissions(kick_members = True)
+async def kick(ctx, member: discord.Member, *, reason = None):
+    await member.kick(reason = reason)
+    await ctx.send(str(member) + " was kicked")
+
+@client.command()
+@commands.has_permissions(ban_members = True)
+async def ban(ctx, member: discord.Member, *, reason = None):
+    await member.ban(reason = reason)
+    await ctx.send(str(member) + " was banned")
+
+@client.command()
+@commands.has_permissions(ban_members = True)
+async def unban(ctx, *, member):
+    bannedUsers = await ctx.guild.bans()
+    memberName, memberDiscriminator = member.split("#")
+
+    for banEntry in bannedUsers:
+        user = banEntry.user
+
+        if (user.name, user.discriminator) == (memberName, memberDiscriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(str(user) + " was unbanned")
+            return
 
 # -- // Run \\ --
 
