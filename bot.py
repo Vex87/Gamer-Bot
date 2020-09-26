@@ -1,11 +1,11 @@
 # -- // Variables \\ --
 
-Settings = [
-    Main = [
-        CommandPrefix = "!",
-        Token = "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.gc0uJDyQAiwWyTaTUu9BXZi_KC4"
-    ]
-]
+Settings = {
+    "Main": {
+        "CommandPrefix": "!",
+        "Token": "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
+    }
+}
 
 import random
 import discord
@@ -13,7 +13,7 @@ from discord.ext import commands
 
 # -- // Variables \\ --
 
-client = commands.Bot(command_prefix = Settings.Main.CommandPrefix)
+client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
 
 # -- // Events \\ --
 
@@ -80,4 +80,4 @@ async def clear(ctx, amount = 1):
 
 # -- // Run \\ --
 
-client.run(Settings.Main.Token)
+client.run(Settings["Main"]["Token"])
