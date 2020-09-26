@@ -7,7 +7,7 @@ Settings = {
     }
 }
 
-cmdimport os
+import os
 import discord
 from discord.ext import commands
 
