@@ -1,5 +1,3 @@
-# Variables
-
 Settings = {
     "Main": {
         "CommandPrefix": "!",
@@ -7,8 +5,7 @@ Settings = {
     }
 }
 
-import os
-import discord
+import os, discord
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
@@ -30,8 +27,10 @@ async def unload(ctx, extention):
 async def reload(ctx, extention):
     client.unload_extension(f"cogs.{extention}")
     await ctx.send(f"{extention} was unloaded")
+
     client.load_extension(f"cogs.{extention}")
     await ctx.send(f"{extention} was loaded")
+
     await ctx.send(f"{extention} was fully reloaded")
 
 for fileName in os.listdir("./cogs"):

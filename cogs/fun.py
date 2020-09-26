@@ -1,5 +1,4 @@
-import random
-import discord
+import random, discord
 from discord.ext import commands
 
 class Fun(commands.Cog):
