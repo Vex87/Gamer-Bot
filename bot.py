@@ -1,4 +1,4 @@
-# -- // Variables \\ --
+# Variables
 
 Settings = {
     "Main": {
@@ -13,31 +13,41 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
 
-# -- // Events \\ --
+# Events
 
-    # Main Events
+## Main Events
 
+### OnReady    
 @client.event
 async def on_ready():
+    print("Bot is ready")
     await client.change_presence(status = discord.Status.online, activity = discord.Game("Active"))
     
+#### On Error
 async def on_error():
+    print("Error")
     await client.change_presence(status = discord.Status.do_not_disturb, activity = discord.Game("Error"))
 
+### On Member Join
 @client.event
 async def on_member_join(member):
     print(str(member) + " has joined the server")
 
+### On Member Leave
 @client.event
 async def on_member_remove(member):
     print(str(member) + " has left the server")
 
     # Commands
 
+## Commands
+
+### Ping
 @client.command()
 async def ping(ctx):
     await ctx.send("Your ping is " + str(round(client.latency * 1000)) + "ms")
 
+### 8ball
 @client.command(aliases = ["8ball"])
 async def _8ball(ctx, *, question):
     responses = [
@@ -64,6 +74,7 @@ async def _8ball(ctx, *, question):
     ]
     await ctx.send("**Question:** " + question + "\n**Answer:** " + random.choice(responses))
 
+### Clear
 @client.command()
 @commands.has_permissions(manage_messages = True)
 async def clear(ctx, amount = 1):
@@ -80,18 +91,21 @@ async def clear(ctx, amount = 1):
 
     await message.delete(delay = 3)
 
+### Kick
 @client.command()
 @commands.has_permissions(kick_members = True)
 async def kick(ctx, member: discord.Member, *, reason = None):
     await member.kick(reason = reason)
     await ctx.send(str(member) + " was kicked")
 
+### Ban
 @client.command()
 @commands.has_permissions(ban_members = True)
 async def ban(ctx, member: discord.Member, *, reason = None):
     await member.ban(reason = reason)
     await ctx.send(str(member) + " was banned")
 
+### Unban
 @client.command()
 @commands.has_permissions(ban_members = True)
 async def unban(ctx, *, member):
@@ -106,6 +120,6 @@ async def unban(ctx, *, member):
             await ctx.send(str(user) + " was unbanned")
             return
 
-# -- // Run \\ --
+# Run
 
 client.run(Settings["Main"]["Token"])
