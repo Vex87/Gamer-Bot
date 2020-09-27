@@ -11,7 +11,7 @@ class DefaultCmds(commands.Cog):
         
         # Default
         default_embed = discord.Embed(
-            title = "Default",
+            title = "Default Commands",
             colour = discord.Colour.light_gray()
         )
         default_embed.add_field(name = "help", value = "Returns a list of commands.", inline = False)
@@ -23,7 +23,7 @@ class DefaultCmds(commands.Cog):
 
         # Fun
         fun_embed = discord.Embed(
-            title = "Fun",
+            title = "Fun Commands",
             colour = discord.Colour.blue()
         )
         fun_embed.add_field(name = "ping", value = "Returns the user's ping.", inline = False)
@@ -36,7 +36,7 @@ class DefaultCmds(commands.Cog):
 
         # Moderation
         moderation_embed = discord.Embed(
-            title = "Moderation",
+            title = "Moderation Commands",
             colour = discord.Colour.red()
         )
         moderation_embed.add_field(name = "clear [AMOUNT = 1]", value = "Clears [AMOUNT] messages in the executed channel.", inline = False)
