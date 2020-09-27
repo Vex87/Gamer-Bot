@@ -38,6 +38,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def senddudes(self, ctx, amount = 1):
+
         responses = [
             # Atla
             "https://th.bing.com/th/id/OIP.yAlM-gWu2kSFQLNBbFdPpwAAAA?w=152&h=184&c=7&o=5&pid=1.7",
@@ -82,10 +83,9 @@ class Fun(commands.Cog):
         for x in range(int(amount)):
             message = f"{message}\n{random.choice(responses)}"
 
-        for x in range(int(amount)):
-            await ctx.send(message)    
+        await ctx.send(message)    
 
-    @commands.command(description = "yes")
+    @commands.command()
     async def bordem(self, ctx, amount = 1):
         responses = [
             "Among Us",
@@ -115,6 +115,27 @@ class Fun(commands.Cog):
             "fortnite",
             "zelda",
             "chess but in real life"
+        ]
+
+        for x in range(int(amount)):
+            await ctx.send(random.choice(responses))    
+
+    @commands.command()
+    async def votemf(self, ctx, amount = 1):
+        responses = [
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/a/a6/1_red.png/revision/latest/scale-to-width-down/140?cb=20200912125145",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/8/8e/2_blue.png/revision/latest/scale-to-width-down/140?cb=20200912125155",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/3/34/3_green.png/revision/latest/scale-to-width-down/140?cb=20200912125201",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/9/9b/4_pink.png/revision/latest/scale-to-width-down/140?cb=20200912125206",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/f/f1/5_orange.png/revision/latest/scale-to-width-down/140?cb=20200912125212",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/5/54/6_yellow.png/revision/latest/scale-to-width-down/140?cb=20200912125217",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/5/55/7_black.png/revision/latest/scale-to-width-down/140?cb=20200912125223",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/e/e1/8_white.png/revision/latest/scale-to-width-down/140?cb=20200912125229",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/7/72/9_purple.png/revision/latest/scale-to-width-down/140?cb=20200912125234",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/b/b2/10_brown.png/revision/latest/scale-to-width-down/140?cb=20200912125240",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/f/f2/11_cyan.png/revision/latest/scale-to-width-down/140?cb=20200912125246",
+            "https://vignette.wikia.nocookie.net/among-us-wiki/images/f/fd/12_lime.png/revision/latest/scale-to-width-down/140?cb=20200912125258",
+            
         ]
 
         for x in range(int(amount)):

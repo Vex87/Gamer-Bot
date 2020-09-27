@@ -16,7 +16,7 @@ class Background(commands.Cog):
 
     @printer.before_loop
     async def before_printer(self):
-        print("waiting...")
+        print("Bot Starting...")
         await self.client.wait_until_ready()  
 
 def setup(client):

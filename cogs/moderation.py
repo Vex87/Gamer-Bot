@@ -11,7 +11,7 @@ class Moderation(commands.Cog):
     async def clear(self, ctx, amount = 1):
 
         if amount == "all":
-            amount = float("inf")
+            amount = int("inf")
 
         await ctx.channel.purge(limit = amount + 1)
         

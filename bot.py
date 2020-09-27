@@ -9,29 +9,31 @@ import os, discord
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
+client.remove_command("help")
 
 @client.command()
-@commands.has_permissions(administrator = True)
 async def load(ctx, extention):
     client.load_extension(f"cogs.{extention}")
     await ctx.send(f"{extention} was loaded")
 
 @client.command()
-@commands.has_permissions(administrator = True)
 async def unload(ctx, extention):
     client.unload_extension(f"cogs.{extention}")
     await ctx.send(f"{extention} was unloaded")
 
 @client.command()
-@commands.has_permissions(administrator = True)
 async def reload(ctx, extention):
-    client.unload_extension(f"cogs.{extention}")
-    await ctx.send(f"{extention} was unloaded")
+    client.reload_extension(f"cogs.{extention}")
+    await ctx.send(f"{extention} was reloaded")
 
-    client.load_extension(f"cogs.{extention}")
-    await ctx.send(f"{extention} was loaded")
+@client.command()
+async def checkforupdates(ctx):
 
-    await ctx.send(f"{extention} was fully reloaded")
+    for fileName in os.listdir("./cogs"):
+        if fileName.endswith(".py"):
+            client.reload_extension(f"cogs.{fileName[:-3]}")
+
+    await ctx.send("Bot Up To Date")
 
 for fileName in os.listdir("./cogs"):
     if fileName.endswith(".py"):

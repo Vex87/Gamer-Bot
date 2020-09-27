@@ -8,7 +8,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("Bot is ready")
+        print("Bot Is Ready")
         await self.client.change_presence(status = discord.Status.online, activity = discord.Game("Active"))
     
     @commands.Cog.listener()
@@ -23,6 +23,10 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         print(str(member) + " has left the server")
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        print(str(error))
 
 def setup(client):
     client.add_cog(Events(client))
