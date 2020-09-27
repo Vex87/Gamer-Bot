@@ -29,6 +29,7 @@ class DefaultCmds(commands.Cog):
         fun_embed.add_field(name = "ping", value = "Returns the user's ping.", inline = False)
         fun_embed.add_field(name = "8ball [QUESTION]", value = "Returns a random answer to the question.", inline = False)
         fun_embed.add_field(name = "senddudes [AMOUNT = 1]", value = "Returns [AMOUNT] images of dudes.", inline = False)
+        fun_embed.add_field(name = "yt", value = "Returns a random youtube video.", inline = False)
         fun_embed.add_field(name = "bordem [AMOUNT = 1]", value = "Returns [AMOUNT] random videogames.", inline = False)
         fun_embed.add_field(name = "votemf [AMOUNT = 1]", value = "Returns a random Among Us player.", inline = False)
         fun_embed.add_field(name = "test", value = "Returns a defined message.", inline = False)
