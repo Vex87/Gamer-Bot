@@ -1,6 +1,6 @@
 Settings = {
     "Main": {
-        "CommandPrefix": "!",
+        "CommandPrefix": ".",
         "Token": "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
     }
 }
