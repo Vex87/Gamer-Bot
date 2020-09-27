@@ -28,5 +28,8 @@ class Events(commands.Cog):
     async def on_command_error(self, ctx, error):
         print(str(error))
 
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(f"**ERROR:** Argument Missing: {str(error)}")
+
 def setup(client):
     client.add_cog(Events(client))
