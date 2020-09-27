@@ -10,7 +10,7 @@ class DefaultCmds(commands.Cog):
     async def help(self, ctx):
         
         # Default
-        default_embed = discord.default_embed(
+        default_embed = discord.Embed(
             title = "Default",
             colour = discord.Colour.light_gray()
         )
@@ -22,7 +22,7 @@ class DefaultCmds(commands.Cog):
         await ctx.send(embed = default_embed)
 
         # Fun
-        fun_embed = discord.fun_embed(
+        fun_embed = discord.Embed(
             title = "Fun",
             colour = discord.Colour.blue()
         )
@@ -35,7 +35,7 @@ class DefaultCmds(commands.Cog):
         await ctx.send(embed = fun_embed)
 
         # Moderation
-        moderation_embed = discord.moderation_embed(
+        moderation_embed = discord.Embed(
             title = "Moderation",
             colour = discord.Colour.red()
         )
