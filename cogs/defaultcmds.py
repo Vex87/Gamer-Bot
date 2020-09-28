@@ -1,4 +1,4 @@
-import discord
+import discord, json
 from discord.ext import commands
 
 class DefaultCmds(commands.Cog):
@@ -45,6 +45,18 @@ class DefaultCmds(commands.Cog):
         moderation_embed.add_field(name = "ban [USER] [REASON = NONE]", value = "Bans a user from that server with an optional reason. User executing the command must have ban permissions.", inline = False)
         moderation_embed.add_field(name = "unban [USER]", value = "Unbans a user from the server. User executing the command must have ban permissions.", inline = False)
         await ctx.send(embed = moderation_embed)
+            
+    @commands.command()
+    async def changeprefix(self, ctx, prefix = "."):
+        with open("prefixes.json", "r") as f:
+            prefixes = json.load(f)
+    
+        prefixes[str(ctx.guild.id)] = prefix
+
+        with open("prefixes.json", "w") as f:
+            json.dump(prefixes, f, indent = 4)
+
+        await ctx.send(f"Prefix changed to `{prefix}``")
 
 def setup(client):
     client.add_cog(DefaultCmds(client))

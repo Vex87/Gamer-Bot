@@ -1,14 +1,14 @@
-Settings = {
-    "Main": {
-        "CommandPrefix": ".",
-        "Token": "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
-    }
-}
-
-import os, discord
+import os, discord, json
 from discord.ext import commands
 
-client = commands.Bot(command_prefix = Settings["Main"]["CommandPrefix"])
+def get_prefix(client, msg):
+    with open("prefixes.json", "r") as f:
+        prefixes = json.load(f)
+
+    return prefixes[str(msg.guild.id)]
+
+token = "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
+client = commands.Bot(command_prefix = get_prefix)
 client.remove_command("help")
 
 @client.command()
@@ -39,4 +39,4 @@ for fileName in os.listdir("./cogs"):
     if fileName.endswith(".py"):
         client.load_extension(f"cogs.{fileName[:-3]}")
 
-client.run(Settings["Main"]["Token"])
+client.run(token)

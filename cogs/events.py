@@ -1,4 +1,4 @@
-import discord
+import discord, json
 from discord.ext import commands
 
 class Events(commands.Cog):
@@ -27,6 +27,26 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         await ctx.send(f"**ERROR:** {str(error)}")
+
+    @commands.Cog.listener()
+    async def on_guild_join(self, guild):
+        with open("prefixes.json", "r") as f:
+            prefixes = json.load(f)
+        
+        prefixes[str(guild.id)] = "."
+
+        with open("prefixes.json", "w") as f:
+            json.dump(prefixes, f, indent = 4)
+
+    @commands.Cog.listener()
+    async def on_guild_remove(self, guild):
+        with open("prefixes.json", "r") as f:
+            prefixes = json.load(f)
+        
+        prefixes.pop(str(guild.id))
+
+        with open("prefixes.json", "w") as f:
+            json.dump(prefixes, f, indent = 4)
 
 def setup(client):
     client.add_cog(Events(client))
