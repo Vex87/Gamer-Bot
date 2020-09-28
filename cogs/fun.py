@@ -142,10 +142,6 @@ class Fun(commands.Cog):
             await ctx.send(random.choice(responses))    
 
     @commands.command()
-    async def test(self, ctx):
-        await ctx.send("test")
-
-    @commands.command()
     async def yt(self, ctx, amount = 1):
         responses = [
             "https://youtu.be/JNecYo0e3f4",
