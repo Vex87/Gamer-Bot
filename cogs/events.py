@@ -8,7 +8,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("Bot Is Ready")
+        print("Bot Is Ready")   
         await self.client.change_presence(status = discord.Status.online, activity = discord.Game("Active"))
     
     @commands.Cog.listener()
@@ -26,9 +26,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-
-        if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send(f"**ERROR:** Argument Missing: {str(error)}")
+        await ctx.send(f"**ERROR:** {str(error)}")
 
 def setup(client):
     client.add_cog(Events(client))
