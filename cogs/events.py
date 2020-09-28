@@ -30,36 +30,36 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        with open("prefixes.json", "r") as f:
-            prefixes = json.load(f)
-        
-        prefixes[str(guild.id)] = "."
+        with open("settings.json", "r") as f:
+            settings = json.load(f)
 
-        with open("prefixes.json", "w") as f:
-            json.dump(prefixes, f, indent = 4)
+            if not str(guild.id) in settings["server_data"]:
+                print(f"{guild} does not have data, adding default data now...")
+                settings["server_data"][str(guild.id)] = settings["default_data"].copy()
 
-    @commands.Cog.listener()
-    async def on_guild_remove(self, guild):
-        with open("prefixes.json", "r") as f:
-            prefixes = json.load(f)
-        
-        prefixes.pop(str(guild.id))
-
-        with open("prefixes.json", "w") as f:
-            json.dump(prefixes, f, indent = 4)
+                with open("settings.json", "w") as f:
+                    json.dump(settings, f, indent = 4)
 
     @commands.Cog.listener()
     async def on_guild_available(self, guild):
+        with open("settings.json", "r") as f:
+            settings = json.load(f)
 
-        with open("prefixes.json", "r") as f:
-            prefixes = json.load(f)
+            if not str(guild.id) in settings["server_data"]:
+                print(f"{guild} does not have data, adding default data now...")
+                settings["server_data"][str(guild.id)] = settings["default_data"].copy()
 
-            if not str(guild.id) in prefixes:
-                print(f"{guild} does NOT have a prefix, adding default now...")
-                
-                prefixes[str(guild.id)] = "."
-                with open("prefixes.json", "w") as f:
-                    json.dump(prefixes, f, indent = 4)
+                with open("settings.json", "w") as f:
+                    json.dump(settings, f, indent = 4)
+
+    @commands.Cog.listener()
+    async def on_guild_remove(self, guild):
+        with open("settings.json", "r") as f:
+            settings = json.load(f)
+            settings["server_data"].pop(str(guild.id))
+
+            with open("settings.json", "w") as f:
+                json.dump(settings, f, indent = 4)
 
 def setup(client):
     client.add_cog(Events(client))

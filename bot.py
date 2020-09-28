@@ -2,12 +2,12 @@ import os, discord, json
 from discord.ext import commands
 
 def get_prefix(client, msg):
-    with open("prefixes.json", "r") as f:
-        prefixes = json.load(f)
+    with open("settings.json", "r") as f:
+        settings = json.load(f)
 
-    return prefixes[str(msg.guild.id)]
+    return settings["server_data"][str(msg.guild.id)]["prefix"]
 
-token = "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
+token = "NzYwMTkyOTcwNTQ0MjUxMDEx.X3Ie3w.eE5txp__k3w43wbVtewl-JKubaQ"
 
 # GamerBot - "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
 # Zuzu - "NzYwMTkyOTcwNTQ0MjUxMDEx.X3Ie3w.eE5txp__k3w43wbVtewl-JKubaQ"

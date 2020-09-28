@@ -1,0 +1,14 @@
+{
+    "default_data": {
+        "prefix": ".",
+        "send_dudes_images": [],
+        "yt_images": []
+    },
+    "server_data": {
+        "759952957520347146": {
+            "prefix": "!",
+            "send_dudes_images": [],
+            "yt_images": []
+        }
+    }
+}
