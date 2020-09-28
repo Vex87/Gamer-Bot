@@ -1,4 +1,4 @@
-import random, discord
+import random, discord, json
 from discord.ext import commands
 
 class Fun(commands.Cog):
@@ -259,6 +259,17 @@ class Fun(commands.Cog):
 
         for x in range(int(amount)):
             await ctx.send(random.choice(responses))   
+
+    @commands.command()
+    async def ytadd(self, ctx, *, link):
+        with open("settings.json", "r") as f:
+            settings = json.load(f)
+            settings["server_data"][str(ctx.guild.id)]["yt_links"].append(link)
+
+            with open("settings.json", "w") as f:
+                json.dump(settings, f, indent = 4)
+
+        await ctx.send(f"`{str(link)}` was added to `yt` command.")
 
 def setup(client):
     client.add_cog(Fun(client))
