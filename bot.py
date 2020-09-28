@@ -7,7 +7,11 @@ def get_prefix(client, msg):
 
     return prefixes[str(msg.guild.id)]
 
-token = "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
+token = "NzYwMTkyOTcwNTQ0MjUxMDEx.X3Ie3w.eE5txp__k3w43wbVtewl-JKubaQ"
+
+# GamerBot - "NzU5MTQ3MzY4NDAyMTI0ODEx.X25RFA.kXNeYiy9YBI7Q8w4wfn7jS95TZg"
+# Zuzu - "NzYwMTkyOTcwNTQ0MjUxMDEx.X3Ie3w.eE5txp__k3w43wbVtewl-JKubaQ"
+
 client = commands.Bot(command_prefix = get_prefix)
 client.remove_command("help")
 
