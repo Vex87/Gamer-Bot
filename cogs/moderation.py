@@ -1,4 +1,4 @@
-import discord
+import discord, math
 from discord.ext import commands
 
 class Moderation(commands.Cog):
@@ -9,16 +9,13 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_messages = True)
     async def clear(self, ctx, amount = 1):
+        deleted_msgs = await ctx.channel.purge(limit = amount + 1)
+        num_of_msgs = len(deleted_msgs) - 1
 
-        if amount == "all":
-            amount = int("inf")
-
-        await ctx.channel.purge(limit = amount + 1)
-        
         if amount == 1:
-            message = await ctx.send(str(amount) + " message will be deleted")
+            message = await ctx.send(str(num_of_msgs) + " messages were deleted")
         else:
-            message = await ctx.send(str(amount) + " messages will be deleted")   
+            message = await ctx.send(str(num_of_msgs) + " messages were deleted")   
 
         await message.delete(delay = 3)
 
