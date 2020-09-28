@@ -48,5 +48,18 @@ class Events(commands.Cog):
         with open("prefixes.json", "w") as f:
             json.dump(prefixes, f, indent = 4)
 
+    @commands.Cog.listener()
+    async def on_guild_available(self, guild):
+
+        with open("prefixes.json", "r") as f:
+            prefixes = json.load(f)
+
+            if not str(guild.id) in prefixes:
+                print(f"{guild} does NOT have a prefix, adding default now...")
+                
+                prefixes[str(guild.id)] = "."
+                with open("prefixes.json", "w") as f:
+                    json.dump(prefixes, f, indent = 4)
+
 def setup(client):
     client.add_cog(Events(client))
