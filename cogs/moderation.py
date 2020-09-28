@@ -11,13 +11,7 @@ class Moderation(commands.Cog):
     async def clear(self, ctx, amount = 1):
         deleted_msgs = await ctx.channel.purge(limit = amount + 1)
         num_of_msgs = len(deleted_msgs) - 1
-
-        if amount == 1:
-            message = await ctx.send(str(num_of_msgs) + " messages were deleted")
-        else:
-            message = await ctx.send(str(num_of_msgs) + " messages were deleted")   
-
-        await message.delete(delay = 3)
+        message = await ctx.send(content = str(num_of_msgs) + " messages were deleted", delete_after = 2)
 
     @commands.command()
     @commands.has_permissions(kick_members = True)
