@@ -28,10 +28,11 @@ class DefaultCmds(commands.Cog):
             title = "Fun Commands",
             colour = discord.Colour.blue()
         )
-        
         fun_embed.add_field(name = "8ball [QUESTION]", value = "Returns a random answer to the question. (fun)", inline = False)
         fun_embed.add_field(name = "senddudes [AMOUNT = 1]", value = "Returns [AMOUNT] images of dudes. (fun)", inline = False)
+        fun_embed.add_field(name = "adddudes [LINK]", value = "Adds a new photo link to the `senddudes` cmd (fun)", inline = False)
         fun_embed.add_field(name = "yt [AMOUNT]", value = "Returns a random youtube video. (fun)", inline = False)
+        fun_embed.add_field(name = "ytadd", value = "Adds a new link to the `ty` cmd (fun)", inline = False)
         fun_embed.add_field(name = "bordem [AMOUNT = 1]", value = "Returns [AMOUNT] random videogames. (fun)", inline = False)
         fun_embed.add_field(name = "votemf [AMOUNT = 1]", value = "Returns a random Among Us player. (fun)", inline = False)
         await ctx.send(embed = fun_embed)
