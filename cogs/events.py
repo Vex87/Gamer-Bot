@@ -30,6 +30,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
+        print(f"Bot added to {guild.name}")
         with open("settings.json", "r") as f:
             settings = json.load(f)
 
@@ -39,9 +40,11 @@ class Events(commands.Cog):
 
                 with open("settings.json", "w") as f:
                     json.dump(settings, f, indent = 4)
+                    print(f"Default data added to {guild.name}")
 
     @commands.Cog.listener()
     async def on_guild_available(self, guild):
+        print(f"{guild.name}'s bot started")
         with open("settings.json", "r") as f:
             settings = json.load(f)
 
@@ -51,15 +54,19 @@ class Events(commands.Cog):
 
                 with open("settings.json", "w") as f:
                     json.dump(settings, f, indent = 4)
+                    print(f"Default data added to {guild.name}")
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
+        print(f"Bot removed from {guild.name}, removing data now...")
+
         with open("settings.json", "r") as f:
             settings = json.load(f)
-            settings["server_data"].pop(str(guild.id))
+            del settings["server_data"][str(guild.id)]
 
             with open("settings.json", "w") as f:
                 json.dump(settings, f, indent = 4)
+                print(f"Data removed from {guild.name}")
 
 def setup(client):
     client.add_cog(Events(client))
