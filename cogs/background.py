@@ -33,7 +33,6 @@ class Background(commands.Cog):
         embed.add_field(name = "Start Time", value = self.start_time, inline = False)
         embed.add_field(name = "Uptime", value = str(self.formatted_up_time), inline = False)
         embed.add_field(name = "Connected Servers", value = str(len(self.client.guilds)), inline = False)
-        embed.add_field(name = "Latency", value = f"{round(self.client.latency, 3)} secs", inline = False)
         await ctx.send(embed = embed)
 
 def setup(client):
