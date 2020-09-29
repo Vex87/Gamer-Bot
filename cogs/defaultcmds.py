@@ -50,7 +50,7 @@ class DefaultCmds(commands.Cog):
         await ctx.send(embed = moderation_embed)
             
     @commands.command()
-    @commands.has_permissions(administrator = True)
+    @commands.check_any(commands.is_owner(), administrator = True))
     async def changeprefix(self, ctx, prefix = "."):
         with open("settings.json", "r") as f:
             settings = json.load(f)
