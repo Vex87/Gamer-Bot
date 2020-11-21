@@ -1,6 +1,6 @@
 import os, discord, json
 from discord.ext import commands
-
+# lol - made by liam1113 because im cool
 def get_prefix(client, msg):
     with open("settings.json", "r") as f:
         settings = json.load(f)
